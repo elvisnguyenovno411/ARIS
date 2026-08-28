@@ -1,0 +1,29 @@
+name: Quality
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    env:
+      QT_QPA_PLATFORM: offscreen
+      ARIS_AUTO_LISTEN: "false"
+      ARIS_ENABLE_HARDWARE: "false"
+      ARIS_ENABLE_OPENAI: "false"
+      ARIS_ENABLE_WEB_SEARCH: "false"
+      ARIS_ENABLE_CLOUD_TTS: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Install project
+        run: python -m pip install -e ".[vision,voice,dev]"
+      - name: Ruff
+        run: python -m ruff check .
+      - name: Pytest
+        run: python -m pytest -q

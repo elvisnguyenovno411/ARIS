@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aris-ai-3d-assistant"
+version = "0.1.0"
+description = "A privacy-aware AI, hand-vision, and holographic 3D desktop assistant beta."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = { text = "MIT" }
+authors = [{ name = "Elvis" }]
+dependencies = [
+  "numpy>=1.26,<3",
+  "openai>=1.100",
+  "opencv-python>=4.10",
+  "platformdirs>=4.3",
+  "pyqtgraph>=0.13.7",
+  "PyOpenGL>=3.1.7",
+  "PySide6>=6.8",
+  "pyserial>=3.5,<4",
+  "python-dotenv>=1.0",
+  "yt-dlp>=2025.1",
+]
+
+[project.optional-dependencies]
+vision = ["mediapipe>=0.10.20"]
+voice = ["sounddevice>=0.5", "pyttsx3>=2.98"]
+mesh = ["trimesh>=4.12,<5", "fast-simplification>=0.1.13,<0.2"]
+dev = [
+  "pip-audit>=2.10",
+  "pytest>=8.3",
+  "pytest-qt>=4.4",
+  "ruff>=0.9",
+]
+
+[project.scripts]
+aris = "aris.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
