@@ -108,7 +108,7 @@ cd Aris
 py -3.12 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
-python -m pip install -e ".[vision,voice,dev]"
+python -m pip install -e ".[vision,voice,mesh,dev]"
 python -m aris
 ```
 

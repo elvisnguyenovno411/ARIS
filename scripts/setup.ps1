@@ -7,5 +7,5 @@ if (-not (Test-Path -LiteralPath ".venv\Scripts\python.exe")) {
 }
 
 & ".venv\Scripts\python.exe" -m pip install --upgrade pip
-& ".venv\Scripts\python.exe" -m pip install -e ".[vision,voice,dev]"
+& ".venv\Scripts\python.exe" -m pip install -e ".[vision,voice,mesh,dev]"
 Write-Host "ARIS setup complete. Run scripts\run.ps1 to start the app."
